@@ -1,11 +1,10 @@
-package com.smart.procurement1.Controller;
+package com.smart.procurement1.controller;
 
 import com.smart.procurement1.Service.ProcurementRequestService;
 import com.smart.procurement1.model.ProcurementRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/admin")

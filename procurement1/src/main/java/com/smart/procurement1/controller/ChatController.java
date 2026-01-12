@@ -1,4 +1,4 @@
-package com.smart.procurement1.Controller;
+package com.smart.procurement1.controller;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +27,8 @@ public class ChatController {
             reply = "Pricing depends on quantity and approval rules.";
         } else if (msg.contains("approval")) {
             reply = "Requests above ₹30,000 require admin approval.";
-        }else if (msg.contains("reject")) {
-                reply = "Requests above 3 items to get Approval.";
+        } else if (msg.contains("reject")) {
+            reply = "Requests above 3 items to get Approval.";
         } else {
             reply = "Our procurement experts will assist you shortly.";
         }

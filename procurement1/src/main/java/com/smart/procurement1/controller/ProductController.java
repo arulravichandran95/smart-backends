@@ -1,5 +1,4 @@
-package com.smart.procurement1.Controller;
-
+package com.smart.procurement1.controller;
 
 import com.smart.procurement1.model.Product;
 import com.smart.procurement1.Service.ProductService;
@@ -30,4 +29,3 @@ public class ProductController {
         return service.getAllProducts();
     }
 }
-

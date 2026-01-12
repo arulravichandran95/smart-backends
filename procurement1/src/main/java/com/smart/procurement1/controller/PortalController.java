@@ -1,4 +1,4 @@
-package com.smart.procurement1.Controller;
+package com.smart.procurement1.controller;
 
 import com.smart.procurement1.Service.ProcurementRequestService;
 import com.smart.procurement1.model.ProcurementRequest;
