@@ -1,0 +1,7 @@
+*.log
+backend_retry.log
+backend_approval.log
+backend_rejection.log
+backend_debug.log
+target/
+.mvn/wrapper/maven-wrapper.properties
