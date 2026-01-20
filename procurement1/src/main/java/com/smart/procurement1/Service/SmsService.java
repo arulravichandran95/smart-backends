@@ -11,28 +11,42 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class SmsService {
 
-    @Value("${twilio.account_sid}")
+    @Value("${twilio.account_sid:}")
     private String accountSid;
 
-    @Value("${twilio.auth_token}")
+    @Value("${twilio.auth_token:}")
     private String authToken;
 
-    @Value("${twilio.phone_number}")
+    @Value("${twilio.phone_number:}")
     private String fromPhoneNumber;
+
+    private boolean isTwilioInitialized = false;
 
     @PostConstruct
     public void init() {
         // Initialize Twilio with credentials
         // Use a simple check to avoid crashing if placeholder values are left
-        if (!"your_account_sid".equals(accountSid)) {
-            Twilio.init(accountSid, authToken);
-            System.out.println("Twilio initialized successfully.");
+        if (accountSid != null && !accountSid.isEmpty() &&
+                authToken != null && !authToken.isEmpty() &&
+                !"your_account_sid".equals(accountSid)) {
+            try {
+                Twilio.init(accountSid, authToken);
+                isTwilioInitialized = true;
+                System.out.println("Twilio initialized successfully.");
+            } catch (Exception e) {
+                System.err.println("Twilio initialization failed: " + e.getMessage());
+            }
         } else {
-            System.out.println("Twilio credentials not configured. SMS will fail.");
+            System.out.println("Twilio credentials not configured. SMS service will be disabled.");
         }
     }
 
     public void sendSms(String to, String messageBody) {
+        if (!isTwilioInitialized) {
+            System.out.println(" [SMS SERVICE] Skipped: Twilio not initialized.");
+            return;
+        }
+
         System.out.println("========================================");
         System.out.println(" [SMS SERVICE] Request received for: " + to);
 
